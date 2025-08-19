@@ -1,0 +1,54 @@
+import java.util.*;
+
+public class LeadersInArray {
+
+    static List<Integer> findLeaders(int[] arr) {
+        int n = arr.length;
+        List<Integer> leaders = new ArrayList<>();
+
+        int max = arr[n - 1];  
+        leaders.add(max);
+
+        for (int i = n - 2; i >= 0; i--) {
+            if (arr[i] > max) {
+                max = arr[i];
+                leaders.add(max);
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for (int i = leaders.size() - 1; i >= 0; i--) {
+            result.add(leaders.get(i));
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        int[] arr1 = {16, 17, 4, 3, 5, 2};
+        System.out.println("Leaders: " + findLeaders(arr1));  
+
+        // Test Case 2
+        int[] arr2 = {1, 2, 3, 4, 0};
+        System.out.println("Leaders: " + findLeaders(arr2));  
+
+        // Test Case 3
+        int[] arr3 = {7, 10, 4, 10, 6, 5, 2};
+        System.out.println("Leaders: " + findLeaders(arr3)); 
+        
+        // Test Case 4
+        int[] arr4 = {5};
+        System.out.println("Leaders: " + findLeaders(arr4));  
+
+        // Test Case 5
+        int[] arr5 = {100, 50, 20, 10};
+        System.out.println("Leaders: " + findLeaders(arr5));  
+
+        // Test Case 6 
+        int n = 1000000;
+        int[] arr6 = new int[n];
+        for (int i = 0; i < n; i++) arr6[i] = i + 1;
+        System.out.println("Leaders: " + findLeaders(arr6));  
+    }
+}
